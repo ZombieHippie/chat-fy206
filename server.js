@@ -14,7 +14,7 @@ wss.on('connection', function (ws) {
     //    clients[i].send("s:Another drawer joined!");
     //}
     clients.push(ws);
-    ws.send("s:Now there are " + clients.length + " drawers connected");
+    ws.send("s:Now there are " + clients.length + " chatters connected");
     ws.on('close', function (ws) {
         var whoToSplice = -1;
         for (var i = 0; i < clients.length; i++) {

@@ -8,12 +8,17 @@ wss.onopen = function () {
     switch(msg[0]){
       case "m":
         tr=document.createElement("TR")
-        tr.innerHTML = "<td><strong>"+msg[1]+":</strong></td><td>"+msg[2].replace("`",":")+"</td>"
+        time = ""
+        try {
+          date = new Date(parseInt(msg[3]))
+          time = date.toLocaleString()
+        }
+        tr.innerHTML = "<td>"+time+"</td><td><strong>"+msg[1]+":</strong></td><td>"+msg[2].replace("`",":")+"</td>"
         log.appendChild(tr)
         break;
       case "s":
         tr=document.createElement("TR")
-        tr.innerHTML = "<td><strong style='magenta'>Server:</strong></td><td>"+msg[1].replace("`",":")+"</td>"
+        tr.innerHTML = "<td><strong style='color:magenta'>Server:</strong></td><td>"+msg[1].replace("`",":")+"</td>"
         log.appendChild(tr)
         break;
     }

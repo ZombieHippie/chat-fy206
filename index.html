@@ -3,15 +3,16 @@
 <style></style>
 </head>
 <body>
-  <table>
+  <table style="width:100%">
     <thead>
+      <td>time</td>
       <td>name</td>
       <td>message</td>
     </thead>
     <tbody id="messagelog" style="overflow-wrap: break-word;overflow-y: scroll;background-color: #fff;">
     </tbody>
     <tfoot>
-      <td id="send_btn" style="display:none; cursor: pointer; text-decoration:underline; color: blue;" colspan="2" onclick="sendMessage(prompt('message:'))">
+      <td id="send_btn" style="display:none; cursor: pointer; text-decoration:underline; color: blue; background-color: #f2f2f2; border-radius: 4px; padding: 2px" colspan="3" onclick="sendMessage(prompt('message:'))">
         Send Message
       </td>
     </tfoot>
