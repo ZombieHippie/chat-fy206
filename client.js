@@ -1,4 +1,4 @@
-var wsUri="ws://chatws.fy206.info"
+var wsUri="ws://chat.fy206.info:6078"
 var wss=new window.WebSocket(wsUri)
 var log=document.getElementById("messagelog")
 wss.onopen = function () {
