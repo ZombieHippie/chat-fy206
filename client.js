@@ -12,7 +12,7 @@ wss.onopen = function () {
         try {
           date = new Date(parseInt(msg[3]))
           time = date.toLocaleString()
-        } catch(){}
+        } catch(err){}
         tr.innerHTML = "<td>"+time+"</td><td><strong>"+msg[1]+":</strong></td><td>"+msg[2].replace("`",":")+"</td>"
         log.appendChild(tr)
         break;
