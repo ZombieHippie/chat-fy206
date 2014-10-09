@@ -4,10 +4,11 @@ var http = require('http'),
 
 var clients = [];
 var date = new Date();
-
+var lastMessages = []
 
 wss.on('connection', function (ws) {
     console.log(date.getDate() +" - "+ date.getHours() +":"+ date.getMinutes() + " A client has connected");
+    lastMessages.forEach(ws.send.bind(ws))
     ws.send("s:Welcome to Fuck Yeah 206!");
     //for (var i = 0; i < clients.length; i++) {
     //    clients[i].send("s:Another drawer joined!");
@@ -30,6 +31,10 @@ wss.on('connection', function (ws) {
         }
     });
     ws.on('message', function (message) {
+        lastMessages.push("m:"+message)
+        if (lastMessages.length > 100) {
+            lastMessages.pop()
+        }
         for (var i = 0; i < clients.length; i++) {
             clients[i].send("m:"+message);
         }
