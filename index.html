@@ -1,0 +1,22 @@
+<head>
+<title>206 Chatroom</title>
+<style></style>
+</head>
+<body>
+  <table>
+    <thead>
+      <td>name</td>
+      <td>message</td>
+    </thead>
+    <tbody id="messagelog" style="overflow-wrap: break-word;overflow-y: scroll;background-color: #fff;">
+    </tbody>
+    <tfoot>
+      <td id="send_btn" style="display:none; cursor: pointer; text-decoration:underline; color: blue;" colspan="2" onclick="sendMessage(prompt('message:'))">
+        Send Message
+      </td>
+    </tfoot>
+  </table>
+  <footer>
+    <script src="/client.js"></script>
+  </footer>
+</body>
