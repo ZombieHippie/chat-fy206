@@ -1,0 +1,10 @@
+{
+  "name": "chat206",
+  "version": "0.0.1",
+  "author": "Cole Lawrence(ZombieHippie)",
+  "main": "server.js",
+  "dependencies": {
+    "jade-dev": "0.0.1",
+    "ws": "~0.4"
+  }
+}

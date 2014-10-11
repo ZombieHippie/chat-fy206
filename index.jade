@@ -1,0 +1,22 @@
+head
+  //-link(href="bootstrap.min.css" rel="stylesheet")
+  style.
+    body { font-family: sans-serif }
+    table {width:100%}
+body
+  table
+    thead
+      tr
+        th date
+        th user
+        th message
+    tbody#messagelog
+    tfoot#send_btn(style="display:none")
+      td(colspan=3)
+        form(method="get" onsubmit="return sendMessage(this.msg.value), (this.msg.value=''), false")
+          input(type="text" name="msg" placeholder="message")
+          input(type="submit" value="Send Message")
+  label(for="online") Online:
+  ul#online
+  footer
+    script(src="client.js")
