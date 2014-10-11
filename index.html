@@ -1,0 +1,32 @@
+
+<head>
+  <style>
+    body { font-family: sans-serif }
+    table {width:100%}
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>date</th>
+        <th>user</th>
+        <th>message</th>
+      </tr>
+    </thead>
+    <tbody id="messagelog"></tbody>
+    <tfoot id="send_btn" style="display:none">
+      <td colspan="3">
+        <form method="get" onsubmit="return sendMessage(this.msg.value), (this.msg.value=''), false">
+          <input type="text" name="msg" placeholder="message"/>
+          <input type="submit" value="Send Message"/>
+        </form>
+      </td>
+    </tfoot>
+  </table>
+  <label for="online">Online:</label>
+  <ul id="online"></ul>
+  <footer>
+    <script src="client.js"></script>
+  </footer>
+</body>
