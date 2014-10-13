@@ -71,7 +71,7 @@ onClientMessage = (data) ->
           self.send Msg(null, client._chatname, "+")
 
         self.send Msg(null, "Welcome to the most bomb-ass chatroom!", "s")
-        broadcast(null, client._chatname + " joined the chatroom", "s")
+        broadcast(null, self._chatname + " joined the chatroom", "s")
         broadcast(null, m.name, "+")
 
       when "m"
