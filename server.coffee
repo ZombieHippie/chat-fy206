@@ -2,16 +2,7 @@ http = require('http')
 WebSocketServer = require('ws').Server
 wss = new WebSocketServer({port: 6078})
 fs = require 'fs'
-
-if process.env.NODE_ENV isnt "production"
-  require './node_modules/jade-dev/jade-dev.js'
-
-log_file = process.env.NODE_LOG
-if typeof log_file isnt "string"
-  log_file = "./messages.log"
-
-if not fs.existsSync log_file
-  fs.writeFileSync log_file, ""
+require './node_modules/jade-dev/jade-dev.js'
 
 clients = []
 lastsender = null
@@ -34,7 +25,7 @@ broadcast = (name, text, type="m") ->
       msgsrow = 0
       lastsender = name
 
-    fs.appendFile log_file, data + "\n", ((error)->error? and console.error(error))
+    fs.appendFile "./messages.log", data + "\n", ((error)->error? and console.error(error))
   for client in clients when client._chatname?
     client.send data
 
@@ -73,7 +64,7 @@ onClientMessage = (data) ->
         # Logged on
         self._chatname = m.name
 
-        fs.readFileSync(log_file, "utf8").split("\n").slice(0,25).forEach self.send.bind(self)
+        fs.readFileSync("./messages.log", "utf8").split("\n").slice(0,25).forEach self.send.bind(self)
 
         # Update new log client's online list
         for client in clients when client isnt self and client._chatname
@@ -87,5 +78,3 @@ onClientMessage = (data) ->
         broadcast(m.name, m.text)
 
 wss.on('connection', onClientConnection)
-
-console.log "ready."
