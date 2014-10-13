@@ -3,8 +3,19 @@ var wss=new window.WebSocket(wsUri)
 var log=document.getElementById("messagelog")
 var onlineEl=document.getElementById("online")
 var online=[]
+var name = document.cookie
+var chooseName = function () {
+  document.cookie = name = prompt("What is your unique name?").split(":")[0]
+  window.location.href = "/" // refresh
+}
+var serverMsg = function (text) {
+  var tr=document.createElement("TR")
+  tr.innerHTML = "<td></td><td><strong style='color:magenta'>server:</strong></td><td>"+text.replace("`",":")+"</td>"
+  log.appendChild(tr)
+}
 wss.onopen = function () {
-  var name = prompt("What is your unique name?").split(":")[0]
+  if(name.length === 0 or name.test(/:/))
+    chooseName()
   wss.send(name+":+::"+Date.now())
   wss.onmessage = function (event) {
     msg=event.data.split(":")
@@ -17,7 +28,6 @@ wss.onopen = function () {
       date = new Date(parseInt(msg[3]))
       time = date.toLocaleString()
     } catch(err){}
-
     switch(type) {
       case "m":
         var tr=document.createElement("TR")
@@ -25,19 +35,19 @@ wss.onopen = function () {
         log.appendChild(tr)
         break;
       case "s":
-        var tr=document.createElement("TR")
-        tr.innerHTML = "<td>"+time+"</td><td><strong style='color:magenta'>Fuck Yeah 206:</strong></td><td>"+text.replace("`",":")+"</td>"
-        log.appendChild(tr)
+        serverMsg(text)
         break;
       case "+":
         var li=document.createElement("LI")
         li.innerText=text
         li.id="user-"+text
         onlineEl.appendChild(li)
+        serverMsg("user joined: " + text)
         break;
       case "-":
         var li = document.getElementById("user-"+text)
         li != null && li.remove()
+        serverMsg("user left: " + text)
         break;
     }
   }
