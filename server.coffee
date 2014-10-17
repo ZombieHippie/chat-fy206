@@ -44,7 +44,7 @@ onClientClose = ->
   if selfIndex isnt -1
     clients.splice(selfIndex, 1)[0]
     if @_chatname
-      broadcast(null, client._chatname + " left the chatroom", "s")
+      broadcast(null, @_chatname + " left the chatroom", "s")
       broadcast(null, @_chatname, "-")
 
 onClientMessage = (data) ->
