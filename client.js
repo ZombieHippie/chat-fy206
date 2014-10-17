@@ -40,7 +40,7 @@ var chooseName = function () {
 var serverMsg = function (text) {
   var tr=document.createElement("TR")
   tr.innerHTML = "<td></td><td><strong style='color:magenta'>server:</strong></td><td>"+text.replace("`",":")+"</td>"
-  log.appendChild(tr)
+  slog.appendChild(tr)
 }
 
 wss.onopen = function () {
@@ -74,12 +74,10 @@ wss.onopen = function () {
         li.innerText=text
         li.id="user-"+text
         onlineEl.appendChild(li)
-        serverMsg("user joined: " + text)
         break;
       case "-":
         var li = document.getElementById("user-"+text)
         li != null && li.remove()
-        serverMsg("user left: " + text)
         break;
     }
   }
