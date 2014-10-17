@@ -40,7 +40,7 @@ var chooseName = function () {
 var serverMsg = function (text) {
   var tr=document.createElement("TR")
   tr.innerHTML = "<td></td><td><strong style='color:magenta'>server:</strong></td><td>"+text.replace("`",":")+"</td>"
-  slog.appendChild(tr)
+  log.appendChild(tr)
 }
 
 wss.onopen = function () {
