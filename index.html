@@ -20,6 +20,7 @@
         <form method="get" onsubmit="return sendMessage(this.msg.value), (this.msg.value=''), false">
           <input type="text" name="msg" placeholder="message"/>
           <input type="submit" value="Send Message"/>
+          <input type="button" value="Change Name" onclick="return chooseName(), false"/>
         </form>
       </td>
     </tfoot>
